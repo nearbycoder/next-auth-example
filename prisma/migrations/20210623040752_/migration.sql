@@ -4,7 +4,7 @@ CREATE TABLE "Account" (
     "userId" TEXT NOT NULL,
     "providerType" TEXT NOT NULL,
     "providerId" TEXT NOT NULL,
-    "providerAccountId" INTEGER NOT NULL,
+    "providerAccountId" TEXT NOT NULL,
     "refreshToken" TEXT,
     "accessToken" TEXT,
     "accessTokenExpires" TIMESTAMP(3),
