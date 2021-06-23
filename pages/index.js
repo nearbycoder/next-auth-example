@@ -1,8 +1,6 @@
-import { signIn, signOut, useSession } from 'next-auth/client';
+import { signIn, signOut, getSession } from 'next-auth/client';
 
-export default function Page() {
-  const [session, loading] = useSession();
-
+export default function Page({ session }) {
   return (
     <>
       {!session && (
@@ -19,4 +17,23 @@ export default function Page() {
       )}
     </>
   );
+}
+
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/api/auth/signin',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      session,
+    },
+  };
 }
