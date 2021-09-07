@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex, Button } from '@chakra-ui/react';
-import { signIn, signOut } from 'next-auth/client';
+import { signOut } from 'next-auth/client';
 
 export default function Nav() {
   return (

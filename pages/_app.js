@@ -1,4 +1,4 @@
-import { ChakraProvider, Flex } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
 import Auth from '../components/Auth';
 
 function MyApp({ Component, pageProps, session }) {

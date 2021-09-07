@@ -1,10 +1,8 @@
-import { signIn, signOut, getSession } from 'next-auth/client';
 import {
   Flex,
   FormControl,
   FormLabel,
   FormErrorMessage,
-  FormHelperText,
   Input,
   Textarea,
   Box,
@@ -18,7 +16,7 @@ export const PostSchema = Yup.object().shape({
   body: Yup.string().required('* Required'),
 });
 
-export default function PostForm({ session }) {
+export default function PostForm() {
   const formik = useFormik({
     initialValues: { title: '', body: '' },
     onSubmit: async (values, { setSubmitting, resetForm }) => {

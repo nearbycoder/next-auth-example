@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChakraProvider, Flex } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import Nav from './Nav';
 import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
