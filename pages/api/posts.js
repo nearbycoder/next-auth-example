@@ -1,4 +1,5 @@
 import { getSession } from 'next-auth/client';
+
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -10,8 +11,12 @@ async function createPost(req, res) {
     return res.status(401).json({ unauthorized: true });
   }
 
+  const sessionRecord = await prisma.session.findUnique({
+    where: { accessToken: session.accessToken },
+  });
+
   const user = await prisma.user.findUnique({
-    where: { email: session.user.email },
+    where: { id: sessionRecord.userId },
   });
 
   if (!req.body.title || !req.body.body) {
