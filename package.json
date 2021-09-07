@@ -9,9 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^1.6.7",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "@next-auth/prisma-adapter": "^0.4.4-canary.64",
     "@prisma/client": "^2.25.0",
     "formik": "^2.2.9",
+    "framer-motion": "^4",
     "next": "11.0.0",
     "next-auth": "^3.27.0",
     "react": "17.0.2",

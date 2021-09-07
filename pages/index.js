@@ -1,4 +1,15 @@
 import { signIn, signOut, getSession } from 'next-auth/client';
+import {
+  Flex,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  Input,
+  Textarea,
+  Box,
+  Button,
+} from '@chakra-ui/react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
@@ -30,51 +41,47 @@ export default function Page({ session }) {
   });
 
   return (
-    <>
-      {!session && (
-        <>
-          Not signed in <br />
-          <button onClick={() => signIn()}>Sign in</button>
-        </>
-      )}
+    <Flex flexDir="column">
       {session && (
-        <>
-          Signed in as {session.user.email} <br />
+        <Box mx="4" my="2" px="2" py="1">
           <form onSubmit={formik.handleSubmit}>
-            <div>
-              <label>
-                Title:{' '}
-                <span style={{ color: 'red' }}>
-                  {formik.touched?.title && formik?.errors?.title}
-                </span>
-                <input
-                  type="text"
-                  onBlur={formik.handleBlur}
-                  value={formik.values.title}
-                  onChange={formik.handleChange}
-                  name="title"></input>
-              </label>
-            </div>
-            <div>
-              <label>
-                Body:{' '}
-                <span style={{ color: 'red' }}>
-                  {formik.touched?.body && formik?.errors?.body}
-                </span>
-                <textarea
-                  type="text"
-                  onBlur={formik.handleBlur}
-                  value={formik.values.body}
-                  onChange={formik.handleChange}
-                  name="body"></textarea>
-              </label>
-            </div>
-            <button type="submit">Submit</button>
+            <FormControl
+              mb="4"
+              id="title"
+              isInvalid={formik.touched?.title && formik?.errors?.title}>
+              <FormLabel>Title</FormLabel>
+              <Input
+                onBlur={formik.handleBlur}
+                value={formik.values.title}
+                onChange={formik.handleChange}
+                type="title"
+              />
+              <FormErrorMessage>
+                {formik.touched?.title && formik?.errors?.title}
+              </FormErrorMessage>
+            </FormControl>
+            <FormControl
+              id="body"
+              isInvalid={formik.touched?.body && formik?.errors?.body}>
+              <FormLabel>Body</FormLabel>
+              <Textarea
+                onBlur={formik.handleBlur}
+                value={formik.values.body}
+                onChange={formik.handleChange}
+                type="body"
+              />
+              <FormErrorMessage>
+                {formik.touched?.body && formik?.errors?.body}
+              </FormErrorMessage>
+            </FormControl>
+
+            <Button type="submit" colorScheme="blue" mt="2">
+              Submit
+            </Button>
           </form>
-          <button onClick={() => signOut()}>Sign out</button>
-        </>
+        </Box>
       )}
-    </>
+    </Flex>
   );
 }
 
