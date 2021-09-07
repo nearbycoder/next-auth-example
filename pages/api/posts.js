@@ -1,8 +1,7 @@
 import { getSession } from 'next-auth/client';
+import prisma from '../../prisma';
 
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { PostSchema } from '../index';
 
 async function createPost(req, res) {
   const session = await getSession({ req });
@@ -19,7 +18,9 @@ async function createPost(req, res) {
     where: { id: sessionRecord.userId },
   });
 
-  if (!req.body.title || !req.body.body) {
+  const valid = await PostSchema.isValid(req.body);
+
+  if (!valid) {
     return res.status(500).json({ error: 'validation error' });
   }
 
