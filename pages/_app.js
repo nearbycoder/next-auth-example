@@ -1,13 +1,10 @@
 import { ChakraProvider, Flex } from '@chakra-ui/react';
-import Nav from '../components/Nav';
+import Auth from '../components/Auth';
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, session }) {
   return (
     <ChakraProvider>
-      <Flex flexDir="column">
-        <Nav />
-        <Component {...pageProps} />
-      </Flex>
+      <Auth {...pageProps} session={session} Component={Component} />
     </ChakraProvider>
   );
 }

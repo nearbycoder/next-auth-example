@@ -1,10 +1,8 @@
 import React from 'react';
 import { Flex, Button } from '@chakra-ui/react';
-import { useSession, signIn, signOut } from 'next-auth/client';
+import { signIn, signOut } from 'next-auth/client';
 
 export default function Nav() {
-  const session = useSession();
-
   return (
     <Flex
       bg="blue.500"

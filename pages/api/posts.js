@@ -1,7 +1,7 @@
 import { getSession } from 'next-auth/client';
 import prisma from '../../prisma';
 
-import { PostSchema } from '../index';
+import { PostSchema } from '../../components/PostForm';
 
 async function createPost(req, res) {
   const session = await getSession({ req });
